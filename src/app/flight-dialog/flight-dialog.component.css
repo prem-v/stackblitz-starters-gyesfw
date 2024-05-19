@@ -1,0 +1,14 @@
+h1 {
+  text-align: center;
+}
+mat-dialog-content {
+  text-align: center;
+  padding: 16px;
+}
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+button {
+  margin: 8px;
+}

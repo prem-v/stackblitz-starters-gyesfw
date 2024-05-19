@@ -1,0 +1,29 @@
+.flight-form {
+  display: flex;
+  flex-direction: column;
+  margin: 16px;
+}
+
+mat-form-field {
+  margin: 16px;
+}
+
+mat-error {
+  margin: 16px;
+}
+
+button {
+  margin: 8px;
+}
+
+button[mat-icon-button] {
+  align-self: center;
+  margin-top: 16px;
+}
+
+@media (min-width: 760px) {
+  .flight-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}

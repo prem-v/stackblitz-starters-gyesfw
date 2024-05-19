@@ -1,0 +1,82 @@
+<form [formGroup]="flightForm" (ngSubmit)="onSubmit()" class="flight-form">
+  <mat-form-field appearance="fill">
+    <mat-label>Departure City</mat-label>
+    <mat-select formControlName="departureCity" required>
+      <mat-option *ngFor="let city of cities$ | async" [value]="city.value">{{
+        city.name
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="flightForm.get('departureCity')?.hasError('required')"
+      >Departure City is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Destination City</mat-label>
+    <mat-select formControlName="destinationCity" required>
+      <mat-option *ngFor="let city of cities$ | async" [value]="city.value">{{
+        city.name
+      }}</mat-option>
+    </mat-select>
+    <mat-error *ngIf="flightForm.get('destinationCity')?.hasError('required')"
+      >Destination City is required</mat-error
+    >
+  </mat-form-field>
+
+  <mat-error *ngIf="flightForm.errors?.['sameCity']" class="error-message">
+    Departure and Destination cities cannot be the same
+  </mat-error>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Depart Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="departPicker"
+      formControlName="departDate"
+      required
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="departPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #departPicker></mat-datepicker>
+    <mat-error *ngIf="flightForm.get('departDate')?.hasError('required')"
+      >Depart Date is required</mat-error
+    >
+    <mat-error *ngIf="flightForm.get('departDate')?.hasError('invalidDate')"
+      >Depart Date must be today or later</mat-error
+    >
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Return Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="returnPicker"
+      formControlName="returnDate"
+      required
+    />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="returnPicker"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #returnPicker></mat-datepicker>
+    <mat-error *ngIf="flightForm.get('returnDate')?.hasError('required')"
+      >Return Date is required</mat-error
+    >
+    <mat-error *ngIf="flightForm.get('returnDate')?.hasError('invalidDate')"
+      >Return Date must be today or later</mat-error
+    >
+  </mat-form-field>
+  <button
+    mat-icon-button
+    type="button"
+    (click)="swapCities()"
+    aria-label="Swap Cities"
+  >
+    <i class="material-icons">swap_horiz</i>
+  </button>
+  <button mat-raised-button color="primary" [disabled]="flightForm.invalid">
+    Submit
+  </button>
+</form>
