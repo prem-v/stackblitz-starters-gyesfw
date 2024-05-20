@@ -2,8 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  template: `Hello, {{name}}`,
+  template: `<h1>{{ title }}</h1>
+  <app-flight-search></app-flight-search>
+  `,
 })
 export class AppComponent {
-  name = 'World';
+  title = 'FlightSearchApp';
 }
